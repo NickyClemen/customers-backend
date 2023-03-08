@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_demo
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: customer_admin
+      POSTGRES_PASSWORD: 7h>\}aa/XP!<-Km
+      DATABASE: customers
+      PORT: 5232
+      PGDATA: /data/postgres
+    volumes:
+      - postgres-db:/data/postgres
+    ports:
+      - "5432:5432"
+
+    network_mode: 'host'
+
+volumes:
+  postgres-db:
+    driver: local

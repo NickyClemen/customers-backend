@@ -2,7 +2,7 @@ import { TestClient } from './api/TestServer';
 import { ApiClient } from './api/ApiClient';
 
 import { AddCreditCustomerController } from '../src/customers/infraestructure/controllers/AddCreditCustomer.controller';
-import { CustomerMemoryRepository } from './customers/infraestructure/repositories/CustomerMemoryRepository';
+import { CustomerMemoryRepository } from './customers/domain/repositories/CustomerMemoryRepository';
 import { CUSTOMER_REPOSITORY } from '../src/customers/domain/interfaces/CustomerRepository.interface';
 import { CustomerService } from '../src/customers/application/usecases/Customer.service';
 import { CUSTOMER_SERVICE } from '../src/customers/domain/interfaces/CustomerService.interface';

@@ -10,11 +10,11 @@ import { CustomerNotFoundException } from '../../domain/exceptions/CustomerNotFo
 export class ListAllCustomersController {
   constructor(@Inject(CustomerFinder) private customerFinder: CustomerFinder) {}
   @Get()
-  execute(
+  async execute(
     @Res() res: StatusResponse<CustomerDto[]>,
-  ): StatusResponse<CustomerDto[]> {
+  ): Promise<StatusResponse<CustomerDto[]>> {
     const customers: CustomerDto[] | CustomerNotFoundException =
-      this.customerFinder.execute();
+      await this.customerFinder.execute();
 
     if (customers instanceof CustomerNotFoundException) {
       return res

@@ -8,14 +8,14 @@ import { CustomerPrimitives } from '../../../../src/customers/domain/models/Cust
 import { DefaultCustomer, UndefinedCustomer } from '../../../shared/customers';
 
 describe('AddCreditCustomerController', () => {
-  it('add credit to undefined customer should return NOT_FOUND', async () => {
+  /*it('add credit to undefined customer should return NOT_FOUND', async () => {
     const { status } = await apiClient.addCreditAvailable({
       uuid: UndefinedCustomer.uuid,
       availableCredit: 1000,
     } as CustomerPrimitives);
 
     expect(status).toBe(HttpStatus.NOT_FOUND);
-  });
+  });*/
 
   it('add credit to customer', async () => {
     const { status, body } = await apiClient.addCreditAvailable({

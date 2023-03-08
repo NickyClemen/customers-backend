@@ -60,4 +60,11 @@ export class Customer {
   addCredit(availableCredit): void {
     this.availableCredit.sumValue(availableCredit);
   }
+
+  updateCustomer(customer: Omit<CustomerPrimitives, 'uuid'>): void {
+    this.name.setValue(customer.name);
+    this.lastName.setValue(customer.lastName);
+    this.accountNumber.setValue(customer.accountNumber);
+    this.availableCredit.sumValue(customer.availableCredit);
+  }
 }

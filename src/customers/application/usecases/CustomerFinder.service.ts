@@ -18,8 +18,8 @@ export class CustomerFinder {
     @Inject(CUSTOMER_SERVICE) private customerService: CustomerService,
   ) {}
 
-  execute(): CustomerPrimitives[] | CustomerNotFoundException {
-    const customers: Customer[] = this.customerService.findAll();
+  async execute(): Promise<CustomerPrimitives[] | CustomerNotFoundException> {
+    const customers: Customer[] = await this.customerService.findAll();
 
     if (!customers || customers.length === 0) {
       return new CustomerNotFoundException(CustomerStatus.NOT_FOUND);

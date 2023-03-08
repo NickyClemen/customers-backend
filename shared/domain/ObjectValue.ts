@@ -6,4 +6,7 @@ export class ObjectValue<T> {
   public getValue(): T {
     return this.value;
   }
+  public setValue(newValue: T) {
+    this.value = newValue;
+  }
 }

@@ -13,8 +13,9 @@ import { UuidDTO } from '../dtos/Uuid.dto';
 import { AddCreditCustomerDTO } from '../dtos/AddCreditCustomer.dto';
 import { AddCreditCustomerService } from '../../application/usecases/AddCreditCustomerService.service';
 import { CustomerNotFoundException } from '../../domain/exceptions/CustomerNotFound.exception';
-import { CustomerDto } from "../dtos/Customer.dto";
-import { CustomerPrimitives } from "../../domain/models/Customer.model";
+
+import { CustomerPrimitives } from '../../domain/models/Customer.model';
+import { CustomerDto } from '../dtos/Customer.dto';
 
 @Controller('customers')
 export class AddCreditCustomerController {
@@ -23,13 +24,13 @@ export class AddCreditCustomerController {
     private addCreditCustomer: AddCreditCustomerService,
   ) {}
   @Put('add-credit/:uuid')
-  execute(
+  async execute(
     @Param() { uuid }: UuidDTO,
     @Body() { availableCredit }: AddCreditCustomerDTO,
     @Res() res: StatusResponse<HttpStatus.OK>,
-  ): StatusResponse<CustomerPrimitives | HttpStatus.NOT_FOUND> {
+  ): Promise<StatusResponse<CustomerDto | HttpStatus.NOT_FOUND>> {
     const customer: CustomerPrimitives | CustomerNotFoundException =
-      this.addCreditCustomer.execute({
+      await this.addCreditCustomer.execute({
         uuid,
         availableCredit,
       });

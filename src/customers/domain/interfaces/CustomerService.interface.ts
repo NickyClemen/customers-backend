@@ -4,6 +4,11 @@ import { CustomerNotFoundException } from '../exceptions/CustomerNotFound.except
 export const CUSTOMER_SERVICE = 'CUSTOMER SERVICE';
 
 export interface CustomerServiceInterface {
-  findAll(): Customer[];
-  addCredit({ uuid, availableCredit }: Partial<CustomerPrimitives>): Customer;
+  create(customer: CustomerPrimitives): Promise<Customer>;
+  findAll(): Promise<Customer[]>;
+  findById(uuid: string): Promise<Customer[]>;
+  addCredit({
+    uuid,
+    availableCredit,
+  }: Partial<CustomerPrimitives>): Promise<Customer>;
 }

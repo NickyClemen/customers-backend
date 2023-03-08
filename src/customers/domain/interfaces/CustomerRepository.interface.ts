@@ -1,9 +1,11 @@
+import { CustomerEntity } from '../entities/Customer.entity';
+
 import { Customer, CustomerPrimitives } from '../models/Customer.model';
 export const CUSTOMER_REPOSITORY = 'CUSTOMER REPOSITORY';
 
-export interface CustomerRepository {
-  findAll(): Customer[];
-  findById(uuid): Customer;
-
-  addCredit({ uuid, availableCredit }: Partial<CustomerPrimitives>): Customer;
+export interface CustomerRepository<T> {
+  save(customer: Omit<CustomerPrimitives, 'uuid'>): Promise<T>;
+  update(uuid, customer: Partial<CustomerPrimitives>): Promise<T>;
+  findAll(): Promise<T[]>;
+  findBy(textSearch: Partial<CustomerPrimitives>): Promise<T[]>;
 }

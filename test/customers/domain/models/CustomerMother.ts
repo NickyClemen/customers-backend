@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import {
   Customer,
   CustomerPrimitives,
-} from '../../../src/customers/domain/models/Customer.model';
+} from '../../../../src/customers/domain/models/Customer.model';
 
 export class CustomerMother {
   public static create({

@@ -60,11 +60,11 @@
     yarn test:e2e
 ```
 
+## Endpoints
+
 ### Base URL
 
 http://localhost:3000/dev
-
-## Endpoints
 
 GET /customers - list all customers sort by availableCredit
 

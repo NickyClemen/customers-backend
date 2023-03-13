@@ -1,19 +1,22 @@
 import { TestClient } from './api/TestServer';
 import { ApiClient } from './api/ApiClient';
 
-import { AddCreditCustomerController } from '../src/customers/infraestructure/controllers/AddCreditCustomer.controller';
-import { CustomerMemoryRepository } from './customers/domain/repositories/CustomerMemoryRepository';
 import { CUSTOMER_REPOSITORY } from '../src/customers/domain/interfaces/CustomerRepository.interface';
-import { CustomerService } from '../src/customers/application/usecases/Customer.service';
 import { CUSTOMER_SERVICE } from '../src/customers/domain/interfaces/CustomerService.interface';
-import { AddCreditCustomerService } from '../src/customers/application/usecases/AddCreditCustomerService.service';
-import { ListAllCustomersController } from '../src/customers/infraestructure/controllers/ListAllCustomers.controller';
+
 import { CustomerFinder } from '../src/customers/application/usecases/CustomerFinder.service';
+import { AddCreditCustomerService } from '../src/customers/application/usecases/AddCreditCustomerService.service';
+
+import { ListAllCustomersController } from '../src/customers/infraestructure/controllers/ListAllCustomers.controller';
+import { AddCreditCustomerController } from '../src/customers/infraestructure/controllers/AddCreditCustomer.controller';
+
+import { CustomerMemoryRepository } from './customers/domain/repositories/CustomerMemoryRepository';
+import { CustomerFakeService } from './customers/application/CustomerFake.service';
 
 let client: TestClient;
 export let apiClient: ApiClient;
 
-beforeAll(async () => {
+beforeEach(async () => {
   const moduleRef = TestClient.moduleBuilder({
     controllers: [AddCreditCustomerController, ListAllCustomersController],
     providers: [
@@ -22,7 +25,7 @@ beforeAll(async () => {
         provide: CUSTOMER_REPOSITORY,
       },
       {
-        useClass: CustomerService,
+        useClass: CustomerFakeService,
         provide: CUSTOMER_SERVICE,
       },
       AddCreditCustomerService,
@@ -34,4 +37,4 @@ beforeAll(async () => {
   apiClient = new ApiClient(client);
 });
 
-afterAll(async () => await client.closeServer());
+afterEach(async () => await client.closeServer());

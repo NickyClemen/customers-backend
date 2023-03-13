@@ -7,7 +7,7 @@ import { AppModule } from './app.module';
 
 let server: Handler;
 
-async function bootstrap() {
+async function bootstrap(): Promise<Handler> {
   const app = await NestFactory.create(AppModule);
   await app.init();
 

@@ -2,7 +2,6 @@
   "moduleFileExtensions": ["js", "json", "ts"],
   "rootDir": ".",
   "testEnvironment": "node",
-  "setupFilesAfterEnv": ["./api/TestServer.ts"],
   "setupFilesAfterEnv": ["./jest.setup.ts"],
   "testRegex": ".spec.ts$",
   "transform": {

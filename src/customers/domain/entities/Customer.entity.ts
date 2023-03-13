@@ -1,37 +1,30 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { UuidV4 } from '../../../../shared/domain/UuidV4';
-import { CustomerName } from '../../../../shared/domain/CustomerName';
-import { CustomerLastName } from '../../../../shared/domain/CustomerLastName';
-import { AccountNumber } from '../../../../shared/domain/AccountNumber';
-import { AvailableCredit } from '../../../../shared/domain/AvailableCredit';
-
-import { CustomerPrimitives } from '../models/Customer.model';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Customer } from '../models/Customer.model';
 
 @Entity()
 export class CustomerEntity {
-  @PrimaryGeneratedColumn('uuid')
-  readonly uuid!: string;
+  @PrimaryColumn('uuid')
+  readonly uuid: string;
 
   @Column({ default: 'UNKNOWN' })
-  name!: string;
+  name: string;
 
   @Column({ default: 'UNKNOWN' })
-  lastName!: string;
+  lastName: string;
+
+  @Column({ default: 123456 })
+  readonly accountNumber: number;
 
   @Column({ default: 0 })
-  readonly accountNumber!: number;
+  availableCredit: number;
 
-  @Column({ default: 0 })
-  availableCredit!: number;
-  constructor({
-    name,
-    lastName,
-    accountNumber,
-    availableCredit,
-  }: Omit<CustomerPrimitives, 'uuid'>) {
-    this.name = name;
-    this.lastName = lastName;
-    this.accountNumber = accountNumber;
-    this.availableCredit = availableCredit;
+  static toDomain(customerEntity: CustomerEntity) {
+    return Customer.fromPrimitives({
+      uuid: customerEntity.uuid,
+      name: customerEntity.name,
+      lastName: customerEntity.lastName,
+      accountNumber: customerEntity.accountNumber,
+      availableCredit: customerEntity.availableCredit,
+    });
   }
 }

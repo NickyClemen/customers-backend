@@ -1,11 +1,17 @@
 service: customers-backend
-
 plugins:
   - serverless-offline
-
+useDotenv: true
 provider:
   name: aws
   runtime: nodejs18.x
+  environment:
+    DATABASE: ${env:DATABASE}
+    HOST: ${env:HOST}
+    NODE_ENV: ${env:NODE_ENV}
+    POSTGRES_USER: ${env:POSTGRES_USER}
+    POSTGRES_PASSWORD: ${env:POSTGRES_PASSWORD}
+    PORT: ${env:PORT}
 functions:
   main:
     handler: dist/src/serverless.handler

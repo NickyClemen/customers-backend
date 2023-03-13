@@ -7,16 +7,14 @@ services:
     environment:
       POSTGRES_USER: customer_admin
       POSTGRES_PASSWORD: 7h>\}aa/XP!<-Km
-      DATABASE: customers
-      PORT: 5232
+      POSTGRES_DB: customer_admin
+      PORT: 5432
       PGDATA: /data/postgres
     volumes:
       - postgres-db:/data/postgres
     ports:
-      - "5432:5432"
-
-    network_mode: 'host'
-
+      - '5432:5432'
+  
 volumes:
   postgres-db:
     driver: local

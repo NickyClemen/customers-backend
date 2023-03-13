@@ -16,8 +16,9 @@ export class Customer {
   private readonly uuid: UuidV4;
   private name: CustomerName;
   private lastName: CustomerLastName;
-  private accountNumber: AccountNumber;
+  private readonly accountNumber: AccountNumber;
   private availableCredit: AvailableCredit;
+
   constructor({
     uuid,
     name,
@@ -47,6 +48,7 @@ export class Customer {
       availableCredit,
     });
   }
+
   toPrimitives(): CustomerPrimitives {
     return {
       uuid: this.uuid.getValue(),

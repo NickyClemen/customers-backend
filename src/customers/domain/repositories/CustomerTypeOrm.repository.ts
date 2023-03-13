@@ -9,21 +9,24 @@ import { CustomerRepository } from '../interfaces/CustomerRepository.interface';
 import { CustomerEntity } from '../entities/Customer.entity';
 
 @Injectable()
-export class CustomerMikroOrmRepository
+export class CustomerTypeOrmRepository
   implements CustomerRepository<CustomerEntity>
 {
   constructor(
     @InjectRepository(CustomerEntity)
     private customerRepository: Repository<CustomerEntity>,
   ) {}
+
   async findAll(): Promise<CustomerEntity[]> {
     return await this.customerRepository.find();
   }
+
   async save(
     customer: Omit<CustomerPrimitives, 'uuid'>,
   ): Promise<CustomerEntity> {
     return await this.customerRepository.save(customer);
   }
+
   async update(
     uuid,
     customer: Partial<CustomerPrimitives>,
@@ -33,6 +36,7 @@ export class CustomerMikroOrmRepository
       ...customer,
     });
   }
+
   async findBy(
     textSearch: Partial<CustomerPrimitives>,
   ): Promise<CustomerEntity[]> {

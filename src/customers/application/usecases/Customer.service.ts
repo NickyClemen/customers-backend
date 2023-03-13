@@ -1,6 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
-import { Customer, CustomerPrimitives } from "../../domain/models/Customer.model";
+import {
+  Customer,
+  CustomerPrimitives,
+} from '../../domain/models/Customer.model';
 import {
   CUSTOMER_REPOSITORY,
   CustomerRepository,
@@ -21,43 +24,27 @@ export class CustomerService implements CustomerServiceInterface {
       customer,
     );
 
-    return Customer.fromPrimitives({
-      uuid: newCustomer.uuid,
-      name: newCustomer.name,
-      lastName: newCustomer.lastName,
-      accountNumber: newCustomer.accountNumber,
-      availableCredit: newCustomer.availableCredit,
-    });
+    return CustomerEntity.toDomain(newCustomer);
   }
 
   async findAll(): Promise<Customer[]> {
     const customers: CustomerEntity[] = await this.customerRepository.findAll();
 
     return customers.map((customer: CustomerEntity) =>
-      Customer.fromPrimitives({
-        uuid: customer.uuid,
-        name: customer.name,
-        lastName: customer.lastName,
-        accountNumber: customer.accountNumber,
-        availableCredit: customer.availableCredit,
-      }),
+      CustomerEntity.toDomain(customer),
     );
   }
-  async findById(uuid: string): Promise<Customer[]> {
-    const customers: CustomerEntity[] = await this.customerRepository.findBy({
-      uuid,
-    });
+
+  async findBy(textSearch: Partial<CustomerPrimitives>): Promise<Customer[]> {
+    const customers: CustomerEntity[] = await this.customerRepository.findBy(
+      textSearch,
+    );
 
     return customers.map((customer: CustomerEntity) =>
-      Customer.fromPrimitives({
-        uuid: customer.uuid,
-        name: customer.name,
-        lastName: customer.lastName,
-        accountNumber: customer.accountNumber,
-        availableCredit: customer.availableCredit,
-      }),
+      CustomerEntity.toDomain(customer),
     );
   }
+
   async addCredit({
     uuid,
     availableCredit,
@@ -65,14 +52,6 @@ export class CustomerService implements CustomerServiceInterface {
     const updatedCustomer: CustomerEntity =
       await this.customerRepository.update(uuid, { availableCredit });
 
-    console.log(updatedCustomer)
-
-    return Customer.fromPrimitives({
-      uuid: updatedCustomer.uuid,
-      name: updatedCustomer.name,
-      lastName: updatedCustomer.lastName,
-      accountNumber: updatedCustomer.accountNumber,
-      availableCredit: updatedCustomer.availableCredit,
-    });
+    return CustomerEntity.toDomain(updatedCustomer);
   }
 }

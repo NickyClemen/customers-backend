@@ -52,6 +52,10 @@ export class CustomerMemoryRepository implements CustomerRepository<Customer> {
       (customer: Customer) => customer.toPrimitives().uuid === uuid,
     );
 
+    if (customerIndex === -1) {
+      return this.customers[customerIndex];
+    }
+
     this.customers[customerIndex].updateCustomer({
       ...this.customers[customerIndex].toPrimitives(),
       ...customer,

@@ -1,4 +1,4 @@
-# Instalación del proyecto
+## Instalación del proyecto
 
 ### 1) Correr Docker Compose para levantar una instancia local de PostgresSql.
 
@@ -76,7 +76,7 @@ PUT /customers/add-credit/<uuid> - add credit to customer account
     }
 ```
 
-### Datos de prueba
+## Datos de prueba
 
 ``` json
     {

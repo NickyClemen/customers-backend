@@ -70,7 +70,7 @@ http://localhost:3000/dev
 
 GET /customers - list all customers sort by availableCredit
 
-PUT /customers/add-credit/<uuid> - add credit to customer account
+PUT /customers/add-credit/:uuid - add credit to customer account
 
 ``` json
     body {

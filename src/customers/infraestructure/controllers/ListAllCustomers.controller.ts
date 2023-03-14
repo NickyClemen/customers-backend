@@ -6,7 +6,7 @@ import { CustomerDto } from '../dtos/Customer.dto';
 
 import { StatusResponse } from '../../../../shared/infraestructure/api/StatusResponse.interface';
 import { CustomerNotFoundException } from '../../domain/exceptions/CustomerNotFound.exception';
-import { SortedByAvailableCreditResponse } from '../../application/usecases/SortedByAvailableCreditResponse';
+import { SortedByAvailableCreditResponse } from '../../../../shared/infraestructure/api/SortedByAvailableCreditResponse';
 
 @Controller('customers')
 export class ListAllCustomersController {

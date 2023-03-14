@@ -8,7 +8,7 @@ import { CustomerNotFoundException } from '../../domain/exceptions/CustomerNotFo
 import { CustomerService } from './Customer.service';
 
 import { CustomerStatus } from '../../../../shared/domain/CustomerStatus.enum';
-import { SortedByAvailableCreditResponse } from './SortedByAvailableCreditResponse';
+import { SortedByAvailableCreditResponse } from '../../../../shared/infraestructure/api/SortedByAvailableCreditResponse';
 
 @Injectable()
 export class CustomerFinder {

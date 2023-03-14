@@ -1,7 +1,7 @@
 import {
   Customer,
   CustomerPrimitives,
-} from '../../domain/models/Customer.model';
+} from '../../../src/customers/domain/models/Customer.model';
 
 export class SortedByAvailableCreditResponse {
   constructor(private customers: Customer[]) {}

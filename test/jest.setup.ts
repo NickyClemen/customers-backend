@@ -5,7 +5,7 @@ import { CUSTOMER_REPOSITORY } from '../src/customers/domain/interfaces/Customer
 import { CUSTOMER_SERVICE } from '../src/customers/domain/interfaces/CustomerService.interface';
 
 import { CustomerFinder } from '../src/customers/application/usecases/CustomerFinder.service';
-import { AddCreditCustomerService } from '../src/customers/application/usecases/AddCreditCustomerService.service';
+import { AddCreditCustomerService } from '../src/customers/application/usecases/AddCreditCustomer.service';
 
 import { ListAllCustomersController } from '../src/customers/infraestructure/controllers/ListAllCustomers.controller';
 import { AddCreditCustomerController } from '../src/customers/infraestructure/controllers/AddCreditCustomer.controller';

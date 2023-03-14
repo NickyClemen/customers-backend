@@ -6,15 +6,19 @@ import { CustomerDto } from '../dtos/Customer.dto';
 
 import { StatusResponse } from '../../../../shared/infraestructure/api/StatusResponse.interface';
 import { CustomerNotFoundException } from '../../domain/exceptions/CustomerNotFound.exception';
+import { SortedByAvailableCreditResponse } from '../../application/usecases/SortedByAvailableCreditResponse';
+
 @Controller('customers')
 export class ListAllCustomersController {
   constructor(@Inject(CustomerFinder) private customerFinder: CustomerFinder) {}
+
   @Get()
   async execute(
     @Res() res: StatusResponse<CustomerDto[]>,
   ): Promise<StatusResponse<CustomerDto[]>> {
-    const customers: CustomerDto[] | CustomerNotFoundException =
-      await this.customerFinder.execute();
+    const customers:
+      | SortedByAvailableCreditResponse
+      | CustomerNotFoundException = await this.customerFinder.execute();
 
     if (customers instanceof CustomerNotFoundException) {
       return res
@@ -22,6 +26,6 @@ export class ListAllCustomersController {
         .json({ message: customers.getErrorMessage() });
     }
 
-    return res.status(HttpStatus.OK).json(customers);
+    return res.status(HttpStatus.OK).json(customers.execute());
   }
 }

@@ -1,17 +1,17 @@
 import {
-  Put,
-  Param,
+  Body,
+  Controller,
   HttpStatus,
   Inject,
+  Param,
+  Put,
   Res,
-  Controller,
-  Body,
 } from '@nestjs/common';
 
 import { StatusResponse } from '../../../../shared/infraestructure/api/StatusResponse.interface';
 import { UuidDTO } from '../dtos/Uuid.dto';
 import { AddCreditCustomerDTO } from '../dtos/AddCreditCustomer.dto';
-import { AddCreditCustomerService } from '../../application/usecases/AddCreditCustomerService.service';
+import { AddCreditCustomerService } from '../../application/usecases/AddCreditCustomer.service';
 import { CustomerNotFoundException } from '../../domain/exceptions/CustomerNotFound.exception';
 
 import { CustomerPrimitives } from '../../domain/models/Customer.model';
@@ -23,6 +23,7 @@ export class AddCreditCustomerController {
     @Inject(AddCreditCustomerService)
     private addCreditCustomer: AddCreditCustomerService,
   ) {}
+
   @Put('add-credit/:uuid')
   async execute(
     @Param() { uuid }: UuidDTO,

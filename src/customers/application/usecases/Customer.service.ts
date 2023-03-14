@@ -49,8 +49,13 @@ export class CustomerService implements CustomerServiceInterface {
     uuid,
     availableCredit,
   }: Partial<CustomerPrimitives>): Promise<Customer> {
+    const [customer] = await this.findBy({ uuid });
+    customer.addCredit(availableCredit);
+
     const updatedCustomer: CustomerEntity =
-      await this.customerRepository.update(uuid, { availableCredit });
+      await this.customerRepository.update(uuid, {
+        availableCredit: customer.toPrimitives().availableCredit,
+      });
 
     return CustomerEntity.toDomain(updatedCustomer);
   }

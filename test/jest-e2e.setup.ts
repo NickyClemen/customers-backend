@@ -11,7 +11,7 @@ import { ListAllCustomersController } from '../src/customers/infraestructure/con
 import { CUSTOMER_REPOSITORY } from '../src/customers/domain/interfaces/CustomerRepository.interface';
 import { CustomerService } from '../src/customers/application/usecases/Customer.service';
 import { CUSTOMER_SERVICE } from '../src/customers/domain/interfaces/CustomerService.interface';
-import { AddCreditCustomerService } from '../src/customers/application/usecases/AddCreditCustomerService.service';
+import { AddCreditCustomerService } from '../src/customers/application/usecases/AddCreditCustomer.service';
 import { CustomerFinder } from '../src/customers/application/usecases/CustomerFinder.service';
 import { CustomerTypeOrmRepository } from '../src/customers/domain/repositories/CustomerTypeOrm.repository';
 

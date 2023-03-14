@@ -8,7 +8,7 @@ import { CustomerTypeOrmRepository } from './domain/repositories/CustomerTypeOrm
 
 import { CustomerService } from './application/usecases/Customer.service';
 import { CustomerFinder } from './application/usecases/CustomerFinder.service';
-import { AddCreditCustomerService } from './application/usecases/AddCreditCustomerService.service';
+import { AddCreditCustomerService } from './application/usecases/AddCreditCustomer.service';
 
 import { ListAllCustomersController } from './infraestructure/controllers/ListAllCustomers.controller';
 import { AddCreditCustomerController } from './infraestructure/controllers/AddCreditCustomer.controller';

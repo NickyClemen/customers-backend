@@ -3,6 +3,7 @@ import { HttpStatus } from '@nestjs/common';
 import { apiClient } from '../../../jest.setup';
 
 import { CustomerPrimitives } from '../../../../src/customers/domain/models/Customer.model';
+import { ListAllCustomersController } from '../../../../src/customers/infraestructure/controllers/ListAllCustomers.controller';
 
 describe('ListAllCustomersController', () => {
   it('list all customers', async () => {
@@ -20,9 +21,9 @@ describe('ListAllCustomersController', () => {
     );
   });
 
-  /*it('customers not list', async () => {
-    const { status } = await apiClient.listAllCustomers();
+  it('customers not list', async () => {
+    const { status } = await apiClient.listAllCustomersError();
 
     expect(status).toBe(HttpStatus.NOT_FOUND);
-  });*/
+  });
 });

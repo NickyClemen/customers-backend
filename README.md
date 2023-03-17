@@ -36,7 +36,7 @@
     yarn migration:run
 ```
 
-### 7) Crear la tabla *customer_entity*
+### 7) Insertar datos en la tabla *customer_entity*
 
 ``` bash
     yarn init:database
